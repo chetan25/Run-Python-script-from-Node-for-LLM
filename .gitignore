@@ -1,0 +1,5 @@
+.env
+chat-fe/node_modules/
+chat-be/node_scripts/node_modules/
+chat-be/python_scripts/__pycache__
+chat-be/python_scripts/nd-ag

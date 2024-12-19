@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./chat-be
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./chat-be/python_scripts:/app/python_scripts
+      - ./chat-be/node_scripts:/app/backend
+
+  frontend:
+    build:
+      context: ./chat-fe
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_BACKEND_URL=http://backend:5000
+    volumes:
+      - .:/usr/src/app
+      - ./chat-fe:/app
+      - /app/node_modules
+    stdin_open: true
+
+networks:
+  default:
+    driver: bridge
